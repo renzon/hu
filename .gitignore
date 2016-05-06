@@ -65,4 +65,7 @@ target/
 #Pycharm
 .idea/
 
-venv/
+venv/*
+
+#Igonorar tudo dentro do virtualenv menos o requirements.txt
+!venv/requirements.txt
