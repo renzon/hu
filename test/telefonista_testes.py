@@ -1,15 +1,7 @@
 import unittest
+from unittest.mock import Mock
 
-from huaula.telefonista import Telefonista, Telefone
-
-
-class TelefoneMock(Telefone):
-    def __init__(self):
-        self.numero = None
-
-    def telefonar(self, numero):
-        self.numero=numero
-        return 'Tel fake para {}'.format(numero)
+from huaula.telefonista import Telefonista
 
 
 class TelefonistaTestes(unittest.TestCase):
@@ -31,13 +23,14 @@ class TelefonistaTestes(unittest.TestCase):
 
     def test_telefonar_um_contato(self):
         telefonista = Telefonista()
-        telefone_mock = TelefoneMock()
+        telefone_mock = Mock()
         telefonista._telefone = telefone_mock
+        telefone_mock.telefonar = Mock(return_value='Tel fake para 2345678')
         contato = ('Renzo', '2345678')
         telefonista.adicionar_contato(*contato)
         resultado_da_ligacao = telefonista.ligar()
+        telefone_mock.telefonar.assert_called_once_with('2345678')
         self.assertEqual('Contato Renzo, Tel fake para 2345678', resultado_da_ligacao)
-        self.assertEqual('2345678', telefone_mock.numero)
 
     def test_telefonar_dois_contatos(self):
         telefonista = Telefonista()
