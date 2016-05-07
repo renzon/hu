@@ -52,3 +52,8 @@ class AvatarviTests(TestCase):
 class IntegracaoTests(TestCase):
     def test_avatar_url(self):
         self.assertEqual('https://avatars.githubusercontent.com/u/2787697?v=3', github.buscar_avatar('viollarr'))
+
+if __name__ == '__main__':
+    import unittest
+
+    unittest.main()
