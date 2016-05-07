@@ -1,4 +1,4 @@
-from unittest.case import TestCase
+from unittest import TestCase, mock
 from unittest.mock import Mock
 
 from huaula import github
@@ -38,18 +38,13 @@ GET_MOCK_RESULT = '''{
 
 
 class AvatarviTests(TestCase):
-    def setUp(self):
-        self.get_real = github.requests.get
-
-    def tearDown(self):
-        github.requests.get = self.get_real
-
-    def test_avatar_url(self):
+    @mock.patch('huaula.github.requests.get')
+    @mock.patch('huaula.github.requests.post')
+    def test_avatar_url(self, post_mock, get_mock):
         # Esse é um teste unitário, não pode depender de rede ou da lib requests
         response = Mock()
         response.text = GET_MOCK_RESULT
-        get_mock = Mock(return_value=response)
-        github.requests.get = get_mock
+        get_mock.return_value = response
         self.assertEqual('https://avatars.githubusercontent.com/u/3457115?v=3', github.buscar_avatar('renzon'))
         get_mock.assert_called_once_with('https://api.github.com/users/renzon')
 
