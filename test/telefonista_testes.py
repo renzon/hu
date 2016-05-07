@@ -25,6 +25,6 @@ class TelefonistaTestes(unittest.TestCase):
         contato = ('Renzo', '2345678')
         telefonista.adicionar_contato(*contato)
         resultado_da_ligacao=telefonista.ligar()
-        self.assertEqual('Contato Renzo, Telefonando para 2345678')
+        self.assertEqual('Contato Renzo, Telefonando para 2345678',resultado_da_ligacao)
 
 

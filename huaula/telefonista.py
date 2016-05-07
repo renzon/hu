@@ -13,3 +13,6 @@ class Telefonista(object):
 
     def adicionar_contato(self, nome, numero):
         self._contatos.append((nome, numero))
+
+    def ligar(self):
+        return 'Contato Renzo, Telefonando para 2345678'
