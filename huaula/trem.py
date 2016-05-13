@@ -1,6 +1,12 @@
-class Trem(object):
+from collections import Sequence
+
+
+class Trem(Sequence):
     def __init__(self, num_vagoes):
         self.num_vagoes = num_vagoes
+
+    def __len__(self):
+        return self.num_vagoes
 
     def __getitem__(self, pos):
         indice = pos if pos >= 0 else self.num_vagoes + pos
