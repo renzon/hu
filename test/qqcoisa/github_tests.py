@@ -1,6 +1,8 @@
 from unittest import TestCase, mock
 from unittest.mock import Mock
 
+
+
 from huaula import github
 
 GET_MOCK_RESULT = '''{
@@ -54,6 +56,7 @@ class IntegracaoTests(TestCase):
         self.assertEqual('https://avatars.githubusercontent.com/u/2787697?v=3', github.buscar_avatar('viollarr'))
 
 if __name__ == '__main__':
+
     import unittest
 
     unittest.main()
