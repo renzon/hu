@@ -21,6 +21,18 @@ class TombolaTestes(TestCase):
         tombola.misturar()
         self.assertEqual([2, 1], tombola._elementos)
 
+    @patch('huaula.tombola.random')
+    def test_sortear(self, random_mock):
+        random_mock.shuffle = shuffle_mock
+        tombola_obj = Tombola()
+        items = [1, 2]
+        tombola_obj.carregar(items)
+        tombola_obj.misturar()
+        valor_sorteado = tombola_obj.sortear()
+        self.assertEqual(1, valor_sorteado)
+        valor_sorteado = tombola_obj()
+        self.assertEqual(2, valor_sorteado)
+
 
 def shuffle_mock(lista):
     lista.reverse()

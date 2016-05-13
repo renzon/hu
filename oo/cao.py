@@ -35,6 +35,7 @@ class Cao(Mamifero):
 
 
 
+
 rex = Cao('Rex')
 print(rex)
 print(rex.patas)
