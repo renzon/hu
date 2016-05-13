@@ -1,19 +1,23 @@
+from abc import ABCMeta, abstractmethod
+
 PI = 3.1415
 
 
-class Mamifero:
+class Mamifero(metaclass=ABCMeta):
     patas = 2
 
     def __init__(self, nome):
         print(id(self))
         self.nome = nome
 
+    @abstractmethod
     def fazer_barulho(self):
-        raise NotImplementedError('Deveria implementar esse método')
+        pass
 
     def __str__(self):
         return self.nome
 
+    @abstractmethod
     def __repr__(self):
         return 'Mamifero({!r})'.format(self.nome)
 
@@ -37,6 +41,14 @@ class Cao(Mamifero):
         if other is None:
             return False
         return self.nome == other.nome
+
+
+class Rato(Mamifero):
+    def fazer_barulho(self):
+        return 'Blah'
+
+    def __repr__(self):
+        return 'Lição de casa'
 
 
 rex = Cao('Rex')
@@ -65,3 +77,6 @@ print(toto)
 
 outro_rex = Cao('Rex')
 print(rex == outro_rex)
+
+for mamifero in [rex, Rato('Rato')]:
+    print(mamifero.fazer_barulho())
