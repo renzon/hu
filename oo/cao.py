@@ -33,7 +33,10 @@ class Cao(Mamifero):
     def __repr__(self):
         return 'Cao({!r},{!r})'.format(**self.__dict__)
 
-
+    def __eq__(self, other):
+        if other is None:
+            return False
+        return self.nome == other.nome
 
 
 rex = Cao('Rex')
@@ -54,8 +57,11 @@ print(rex.patas)
 print(Cao.patas)
 Cao.get_nome = lambda self: self.nome
 print(rex.get_nome())
-rex.nervoso=True
+rex.nervoso = True
 print(rex.fazer_barulho())
 print(toto.fazer_barulho())
 print(toto)
 # print(Cao.nome)
+
+outro_rex = Cao('Rex')
+print(rex == outro_rex)
